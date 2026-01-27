@@ -10,41 +10,73 @@ class HabitScreen extends StatefulWidget {
 
 class _HabitScreenState extends State<HabitScreen> {
   final List<Habit> habits = [];
+  int count = 0;
 
   @override
   void initState() {
     super.initState();
 
-    habits.add(Habit(title: "Drink water", isDone: false));
-    habits.add(Habit(title: "Go for a walk", isDone: false));
-    habits.add(Habit(title: "Make the bed", isDone: false));
+    habits.add(Habit(title: "Drink", isDone: false, goal: 5, count: 0));
+    habits.add(Habit(title: "Exercise", isDone: false, goal: 15, count: 0));
+    habits.add(Habit(title: "Read a book", isDone: false, goal: 5, count: 0));
+    habits.add(Habit(title: "Study", isDone: false, goal: 130, count: 0));
   }
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("<hs>"),
-      ),
-      body: ListView.builder(
-        itemCount: 2,
-        itemBuilder: (context, index)  {
-          final habit = habits[index];
-
-          return ListTile(
-            title: Text(habit.title),
-            trailing: Checkbox(
-              value: habit.isDone,
-              onChanged: (value) {
-                setState(() {
-                  habit.isDone = value ?? false;
-                });
-              },
-            ),
-          );
-        },
-      ),
+      appBar: AppBar(title: Text("Health", style: TextStyle(
+        color: Colors.white,
+        fontSize: 30,
+        fontStyle: FontStyle.italic
+      ),)),
+      body: 
+      Container(
+        color: Color(0xffF8FAFC),
+        child: ListView.builder(
+          itemCount: habits.length,
+          itemBuilder: (context, index) {
+            final habit = habits[index];
+        
+            return ListTile(
+              title: Text(habit.title, style: TextStyle(
+                fontSize: 25
+                )),
+              subtitle: Text(
+                'Goal: ${habit.goal}',
+                style: TextStyle(fontSize: 18),
+              ),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+        
+                children: [
+                  Text(
+                    "${habit.count}/${habit.goal}",
+                    style: TextStyle(fontSize: 23),
+                  ),
+                  SizedBox(width: 29),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        habit.count++;
+                        if (habit.count == habit.goal) {
+                          print("${habit.title} done!!!");
+                        }
+                      });
+                    },
+                    child: Text("+", style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.black
+                    ),),
+                  ),
+                ],
+              ),
+            );
+            
+          }
+          
+        ),
+      )
     );
   }
 }
