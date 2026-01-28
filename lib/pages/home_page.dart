@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/components/footer.dart';
-import 'package:habit_tracker/components/habit_screen.dart';
+import 'package:habit_tracker/pages/category_page.dart';
+import 'package:hugeicons/hugeicons.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -9,21 +10,31 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        // leading: Icon(Icons.clear_all, color: Colors.white,),
-        // title: Text('Goal tracker', style: TextStyle(
-        //   fontSize: 31,
-        //   color: Colors.white
-        // ),),
+        iconTheme: IconThemeData(
+          color: Colors.white
+        ),
+        toolbarHeight: 25,
+        title: Center(
+          child: HugeIcon(
+            icon: HugeIcons.strokeRoundedTarget01,
+            color: Colors.white,
+            size: 25.0,
+          ),
+        ) 
+        
+        // backgroundColor: Colors.white,
       ),
       body: Column(
         children: [
-          Expanded(child: HabitScreen()
-          ),
-          Footer()
+          Expanded(child: CategoryPage())
+          ,
+          // Expanded(child: HabitScreen()
+          // ),
+          
         ],
-      )
+      ),
        
-      
+      bottomNavigationBar: Footer(currentIndex: 0),
       );
   }
 }

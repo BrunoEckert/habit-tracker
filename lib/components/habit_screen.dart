@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/components/footer.dart';
 import 'package:habit_tracker/models/habit.dart';
+import 'package:hugeicons/hugeicons.dart';
 
 class HabitScreen extends StatefulWidget {
   const HabitScreen({super.key});
@@ -29,7 +31,11 @@ class _HabitScreenState extends State<HabitScreen> {
         color: Colors.white,
         fontSize: 30,
         fontStyle: FontStyle.italic
-      ),)),
+      ),),
+      leading: BackButton(
+        color: Colors.white,
+      ),
+      ),
       body: 
       Container(
         color: Color(0xffF8FAFC),
@@ -55,20 +61,20 @@ class _HabitScreenState extends State<HabitScreen> {
                     style: TextStyle(fontSize: 23),
                   ),
                   SizedBox(width: 29),
-                  ElevatedButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () => {
                       setState(() {
                         habit.count++;
                         if (habit.count == habit.goal) {
                           print("${habit.title} done!!!");
                         }
-                      });
+                      })
                     },
-                    child: Text("+", style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.black
-                    ),),
-                  ),
+                  child: HugeIcon(
+                    icon: HugeIcons.strokeRoundedAddCircle,
+                    color: Color(0xff1E293B),
+                    size: 40.0,
+                  ),) 
                 ],
               ),
             );
@@ -76,7 +82,8 @@ class _HabitScreenState extends State<HabitScreen> {
           }
           
         ),
-      )
+      ),
+      bottomNavigationBar: Footer(currentIndex: 1),
     );
   }
 }

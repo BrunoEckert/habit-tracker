@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/pages/category_page.dart';
+import 'package:habit_tracker/pages/home_page.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 class Footer extends StatefulWidget {
-  const Footer({super.key});
+  final int currentIndex;
+
+  const Footer({super.key, required this.currentIndex});
 
   @override
   State<Footer> createState() => _FooterState();
@@ -12,18 +16,29 @@ class _FooterState extends State<Footer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity, 
+      width: double.infinity,
       padding: EdgeInsets.all(12),
       color: Color(0xff1E293B),
       child: Row(
-      
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          HugeIcon(
-            icon: HugeIcons.strokeRoundedHome09,
-            color: Colors.white,
-            size: 40.0,
+          InkWell(
+            onTap: () {
+              if (widget.currentIndex == 0) return;
+
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+                (route) => false,
+              );
+            },
+            child: HugeIcon(
+              icon: HugeIcons.strokeRoundedHome09,
+              color: Colors.white,
+              size: 40.0,
+            ),
           ),
+
           HugeIcon(
             icon: HugeIcons.strokeRoundedAddCircle,
             color: Colors.white,
@@ -34,11 +49,7 @@ class _FooterState extends State<Footer> {
             color: Colors.white,
             size: 40.0,
           ),
-          
-        
-        ]
-        ,
-        
+        ],
       ),
     );
   }

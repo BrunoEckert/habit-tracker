@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/pages/category_page.dart';
 import 'package:habit_tracker/pages/home_page.dart';
 
 void main() {
@@ -12,6 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // initialRoute: '/',
+      // routes: {
+      //   '/': (context) => HomePage(),
+      //   '/categories': (context) => CategoryPage()
+      // },
       title: 'Flutter Demo',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
