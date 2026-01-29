@@ -39,11 +39,11 @@ class _FooterState extends State<Footer> {
             ),
           ),
 
-          HugeIcon(
-            icon: HugeIcons.strokeRoundedAddCircle,
-            color: Colors.white,
-            size: 40.0,
-          ),
+          // HugeIcon(
+          //   icon: HugeIcons.strokeRoundedAddCircle,
+          //   color: Colors.white,
+          //   size: 40.0,
+          // ),
           HugeIcon(
             icon: HugeIcons.strokeRoundedSettings01,
             color: Colors.white,

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/components/habit_screen.dart';
+import 'package:habit_tracker/models/habit.dart';
 import 'package:habit_tracker/models/habit_category.dart';
 
 class CategoryPage extends StatefulWidget {
@@ -12,14 +13,22 @@ class CategoryPage extends StatefulWidget {
 
 class _CategoryPageState extends State<CategoryPage> {
   final List<HabitCategory> categories = [];
+  final List<Habit> habitsHealth = [];
+  final List<Habit> habitsKnowledge = [];
 
   @override
   void initState() {
     super.initState();
 
-    categories.add(HabitCategory(title: "Health"));
-    categories.add(HabitCategory(title: "Knowledge"));
-    categories.add(HabitCategory(title: "Work"));
+    habitsHealth.add(Habit(title: "Run", isDone: false, goal: 50, count: 0));
+    habitsHealth.add(Habit(title: "Reading", isDone: false, goal: 60, count: 0));
+    habitsHealth.add(Habit(title: "Walking", isDone: false, goal: 70, count: 0));
+
+    habitsKnowledge.add(Habit(title: "Meditation", isDone: false, goal: 10, count: 0));
+    habitsKnowledge.add(Habit(title: "Self Reflexion", isDone: false, goal: 20, count: 0));
+
+    categories.add(HabitCategory(title: "Health", habits: habitsHealth));
+    categories.add(HabitCategory(title: "Knowledge", habits: habitsKnowledge));
   }
 
   @override
@@ -56,7 +65,9 @@ class _CategoryPageState extends State<CategoryPage> {
               onTap: () => {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HabitScreen()),
+                  MaterialPageRoute(
+                    builder: (_) => HabitScreen(category: category),
+                  ),
                 ),
               },
               child: Center(

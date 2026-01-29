@@ -13,6 +13,8 @@ CRUD {
 - Como fazer para exibir os hábitos relacionados à categoria em si
 (provavelmente usando uma List<>)
 - Ao clicar na categoria ela "cria" a página habit_screen consumindo os hábitos salvos na lista da category;
+- Puxar o nome da categoria no appBar da pagina HabitScreen;
+- Renomear o nome de algumas páginas (ex HabitScreen)
 
 
 ESTUDOS {
