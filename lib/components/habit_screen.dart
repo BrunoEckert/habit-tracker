@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/components/add_category_icon.dart';
 import 'package:habit_tracker/components/footer.dart';
 import 'package:habit_tracker/models/habit.dart';
 import 'package:habit_tracker/models/habit_category.dart';
@@ -56,6 +57,7 @@ class _HabitScreenState extends State<HabitScreen> {
                   Text(
                     "${habit.count}/${habit.goal}",
                     style: TextStyle(fontSize: 23),
+                    overflow: null,
                   ),
                   SizedBox(width: 29),
                   GestureDetector(
@@ -76,8 +78,15 @@ class _HabitScreenState extends State<HabitScreen> {
                 ],
               ),
             );
+            
           },
+          
         ),
+        
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => {print("botao clicado")},
+        child: AddCategoryIcon(),
       ),
       bottomNavigationBar: Footer(currentIndex: 1),
     );

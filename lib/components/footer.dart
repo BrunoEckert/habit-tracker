@@ -33,6 +33,7 @@ class _FooterState extends State<Footer> {
               );
             },
             child: HugeIcon(
+              
               icon: HugeIcons.strokeRoundedHome09,
               color: Colors.white,
               size: 40.0,
@@ -44,11 +45,11 @@ class _FooterState extends State<Footer> {
           //   color: Colors.white,
           //   size: 40.0,
           // ),
-          HugeIcon(
-            icon: HugeIcons.strokeRoundedSettings01,
-            color: Colors.white,
-            size: 40.0,
-          ),
+          // HugeIcon(
+          //   icon: HugeIcons.strokeRoundedSettings01,
+          //   color: Colors.white,
+          //   size: 40.0,
+          // ),
         ],
       ),
     );

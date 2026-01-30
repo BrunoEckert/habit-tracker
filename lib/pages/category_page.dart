@@ -29,6 +29,7 @@ class _CategoryPageState extends State<CategoryPage> {
 
     categories.add(HabitCategory(title: "Health", habits: habitsHealth));
     categories.add(HabitCategory(title: "Knowledge", habits: habitsKnowledge));
+    
   }
 
   @override
@@ -79,7 +80,9 @@ class _CategoryPageState extends State<CategoryPage> {
             ),
           );
         },
+        
       ),
+      
     );
   }
 }
