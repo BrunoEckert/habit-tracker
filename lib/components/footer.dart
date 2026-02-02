@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/pages/category_page.dart';
 import 'package:habit_tracker/pages/home_page.dart';
+import 'package:habit_tracker/pages/home_page_2.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 class Footer extends StatefulWidget {
@@ -28,7 +29,7 @@ class _FooterState extends State<Footer> {
 
               Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => HomePage()),
+                MaterialPageRoute(builder: (context) => HomePage2()),
                 (route) => false,
               );
             },
