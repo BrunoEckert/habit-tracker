@@ -27,10 +27,9 @@ class _FooterState extends State<Footer> {
             onTap: () {
               if (widget.currentIndex == 0) return;
 
-              Navigator.pushAndRemoveUntil(
+              Navigator.popUntil(
                 context,
-                MaterialPageRoute(builder: (context) => HomePage2()),
-                (route) => false,
+                (route) => route.isFirst
               );
             },
             child: HugeIcon(

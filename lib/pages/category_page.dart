@@ -14,11 +14,7 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPageState extends State<CategoryPage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +46,10 @@ class _CategoryPageState extends State<CategoryPage> {
           return Card(
             color: Color(0xff1E293B),
             child: InkWell(
-              onTap: () => {},
+              onTap: () => {
+                Navigator.push(context,
+                MaterialPageRoute(builder: (_) => HabitScreen(habitCategory: category)))
+              },
               child: Center(
                 child: Text(
                   category.title,
@@ -58,7 +57,9 @@ class _CategoryPageState extends State<CategoryPage> {
                 ),
               ),
             ),
+            
           );
+          
         },
       ),
     );

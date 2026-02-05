@@ -1,94 +1,85 @@
-// import 'package:flutter/material.dart';
-// import 'package:habit_tracker/components/add_category_icon.dart';
-// import 'package:habit_tracker/components/footer.dart';
-// import 'package:habit_tracker/models/habit.dart';
-// import 'package:habit_tracker/models/habit_category.dart';
-// import 'package:hugeicons/hugeicons.dart';
+import 'package:flutter/material.dart';
+import 'package:habit_tracker/components/add_category_icon.dart';
+import 'package:habit_tracker/components/footer.dart';
+import 'package:habit_tracker/components/habit_form.dart';
+import 'package:habit_tracker/models/habit.dart';
+import 'package:habit_tracker/models/habit_category.dart';
+import 'package:hugeicons/hugeicons.dart';
 
-// class HabitScreen extends StatefulWidget {
-//   // final HabitCategory category;
-//   const HabitScreen({super.key});
+class HabitScreen extends StatefulWidget {
+  final HabitCategory habitCategory;
+  const HabitScreen({super.key, required this.habitCategory});
 
-//   @override
-//   State<HabitScreen> createState() => _HabitScreenState();
-// }
+  @override
+  State<HabitScreen> createState() => _HabitScreenState();
+}
 
-// class _HabitScreenState extends State<HabitScreen> {
-//   // final List<Habit> habits = [];
-//   int count = 0;
+class _HabitScreenState extends State<HabitScreen> {
+  // usar depois essa lista quando for exibir os hábitos
+  // final List<Habit> habits = [];
 
-//   @override
-//   void initState() {
-//     super.initState();
-//   }
+  void saveHabit(String title, String goal, String count) {
+    setState(() {
+      widget.habitCategory.habits.add(
+        Habit(title: title, goal: goal, count: count),
+      );
+    });
+  }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     final habits = widget.category.habits;
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text(
-//           widget.category.title,
-//           style: TextStyle(
-//             color: Colors.white,
-//             fontSize: 30,
-//             fontStyle: FontStyle.italic,
-//           ),
-//         ),
-//         leading: BackButton(color: Colors.white),
-//       ),
-//       body: Container(
-//         color: Color(0xffF8FAFC),
-//         child: ListView.builder(
-//           itemCount: habits.length,
-//           itemBuilder: (context, index) {
-//             final habit = habits[index];
-
-//             return ListTile(
-//               title: Text(habit.title, style: TextStyle(fontSize: 25)),
-//               subtitle: Text(
-//                 'Goal: ${habit.goal}',
-//                 style: TextStyle(fontSize: 18),
-//               ),
-//               trailing: Row(
-//                 mainAxisSize: MainAxisSize.min,
-
-//                 children: [
-//                   Text(
-//                     "${habit.count}/${habit.goal}",
-//                     style: TextStyle(fontSize: 23),
-//                     overflow: null,
-//                   ),
-//                   SizedBox(width: 29),
-//                   GestureDetector(
-//                     onTap: () => {
-//                       setState(() {
-//                         habit.count++;
-//                         if (habit.count == habit.goal) {
-//                           print("${habit.title} done!!!");
-//                         }
-//                       }),
-//                     },
-//                     child: HugeIcon(
-//                       icon: HugeIcons.strokeRoundedAddCircle,
-//                       color: Color(0xff1E293B),
-//                       size: 40.0,
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             );
-            
-//           },
+  @override
+  Widget build(BuildContext context) {
+    final category = widget.habitCategory;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          category.title,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 30,
+            fontStyle: FontStyle.italic,
+          ),
+        ),
+        leading: BackButton(color: Colors.white),
+        actions: [
+          Padding(padding: EdgeInsets.only(right: 16),
+          child: HugeIcon(
+            icon: HugeIcons.strokeRoundedSettings02,
+            color: Colors.white,
+            size: 35.0,
+            strokeWidth: 1.3, 
+          ),)
           
-//         ),
+        ],
         
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: () => {print("botao clicado")},
-//         child: AddCategoryIcon(),
-//       ),
-//       bottomNavigationBar: Footer(currentIndex: 1),
-//     );
-//   }
-// }
+      ),
+      body: ListView.builder(
+        itemCount: category.habits.length,
+        itemBuilder: (context, index) {
+          final habit = category.habits[index];
+
+          return ListTile(
+            title: Text(habit.title, style: TextStyle(
+              fontSize: 22 
+            ),),
+            trailing: Text("${habit.count}/${habit.goal}", style: TextStyle(
+              fontSize: 22
+            ),),);
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) {
+              return Padding(
+                padding: EdgeInsets.all(16),
+                child: HabitForm(onSave: saveHabit), 
+          );
+            },
+          ),  
+        },
+        child: AddCategoryIcon(),),
+      bottomNavigationBar: Footer(currentIndex: 1),
+    );
+  }
+}
